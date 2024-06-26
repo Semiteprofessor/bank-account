@@ -1,4 +1,4 @@
-import { act, useReducer, useState } from "react";
+import { useReducer } from "react";
 import "./App.css";
 
 const initialState = {
@@ -40,6 +40,7 @@ const reducer = (state, action) => {
         balance: state.balance - state.loan,
       };
     case "closeAccount":
+      if (state.loan > 0 || state.balance !== 0) return state;
       return {
         ...state,
         isActive: false,
